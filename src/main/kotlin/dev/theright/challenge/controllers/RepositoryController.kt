@@ -14,24 +14,11 @@ import reactor.core.publisher.Mono
 @RestController
 @RequestMapping("/api/v1/users/{username}/repos")
 class RepositoryController(
-    private val repositoryService: RepositoryService,
-    private val branchService: BranchService
+    private val repositoryService: RepositoryService
 ) {
     @GetMapping
-    fun listUserRepos(
-        @PathVariable("username") username: String
-    ): Mono<ResponseEntity<List<RepositoryInfo>>> {
-        return repositoryService.getRepositories(username)
-            .flatMap { repository ->
-                branchService.getBranches(username, repository.name)
-                    .collectList()
-                    .map { branches ->
-                        RepositoryInfo(repository.name, repository.owner, branches)
-                    }
-            }
-            .collectList()
-            .map { repositories ->
-                ResponseEntity(repositories, HttpStatus.OK)
-            }
+    fun getRepositoryInfo(@PathVariable username: String): ResponseEntity<Any> {
+        val repositoryInfos = repositoryService.getRepositoryInfo(username)
+        return ResponseEntity.ok(repositoryInfos)
     }
 }
