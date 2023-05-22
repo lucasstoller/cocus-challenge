@@ -3,16 +3,14 @@ package dev.theright.challenge.services
 import dev.theright.challenge.controllers.GithubUserNotFoundException
 import dev.theright.challenge.entities.Repository
 import dev.theright.challenge.entities.RepositoryInfo
-import dev.theright.challenge.infra.GithubClient
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
+import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.WebClientResponseException
 import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
 
 @Service
 class RepositoryService(
-    private val githubClient: GithubClient,
+    private val githubClient: WebClient,
     private val branchService: BranchService
 ) {
     fun getRepositoryInfo(username: String): Flux<RepositoryInfo> {
@@ -29,7 +27,7 @@ class RepositoryService(
     }
 
     private fun getRepositories(username: String): Flux<Repository> {
-        return githubClient.build().get()
+        return githubClient.get()
             .uri("/users/{username}/repos", username)
             .retrieve()
             .bodyToFlux(Repository::class.java)
