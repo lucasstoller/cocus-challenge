@@ -11,7 +11,7 @@ class GlobalExceptionHandler {
     fun handleGithubUserNotFoundException(ex: GithubUserNotFoundException): ResponseEntity<ErrorResponse> {
         val errorResponse = ErrorResponse(
             status = HttpStatus.NOT_FOUND.value(),
-            message = "Github user ${ex.username} was not found}"
+            message = "Github user ${ex.username} was not found"
         )
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse)
     }

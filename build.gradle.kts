@@ -26,8 +26,11 @@ dependencies {
     // Swagger dependencies
 	implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.1.0")
 
+	// Test dependencies
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("io.projectreactor:reactor-test")
+	testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+	testImplementation("io.projectreactor:reactor-test:3.4.9")
+	testImplementation("io.mockk:mockk:1.12.0")
 }
 
 tasks.withType<KotlinCompile> {
