@@ -33,7 +33,7 @@ cd CocusChallenge
 - Copy the generated token
 
 4. Open the application.properties file located in src/main/resources:
-- Replace the value of `github.token with your generated GitHub token
+- Replace the value of `github.token` with your generated GitHub token
 - Save the file
 
 ## Running the Application
@@ -73,3 +73,4 @@ The project directory structure follows the Spring Boot convention:
 ## Documentation
 
 The API documentation can be accessed at `http://localhost:8080/swagger-ui.html` when the application is running. From there, you can view and test the available endpoints.
+

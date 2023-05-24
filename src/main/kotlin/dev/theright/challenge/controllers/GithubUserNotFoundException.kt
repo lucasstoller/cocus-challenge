@@ -1,3 +1,3 @@
 package dev.theright.challenge.controllers
 
-class GithubUserNotFoundException(e: Exception, val username: String) : Exception(e) {}
+class GithubUserNotFoundException(e: Exception, val username: String) : Exception(e)
